@@ -5,6 +5,7 @@ public class Training {
     private int trainingId;
     private String trainingName;
     private String trainerName;
+    private Employee employee;
 
     public Training(int trainingId, String trainingName, String trainerName) {
         this.trainingId = trainingId;
@@ -12,16 +13,14 @@ public class Training {
         this.trainerName = trainerName;
     }
 
-    public int getTrainingId() {
-        return trainingId;
+    public void enrollEmployee(Employee employee) {
+        this.employee = employee;
+        System.out.println("Employee " + employee.getEmpName() +
+                " enrolled in " + trainingName);
     }
 
     public String getTrainingName() {
         return trainingName;
-    }
-
-    public String getTrainerName() {
-        return trainerName;
     }
 
     public void evaluate() {

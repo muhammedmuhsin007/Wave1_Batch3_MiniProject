@@ -2,17 +2,20 @@ package com.ust.project;
 
 public class Certification {
 
+    private String certificationName;
     private boolean completed;
 
-    public Certification(boolean completed) {
+    public Certification(String certificationName, boolean completed) {
+        this.certificationName = certificationName;
         this.completed = completed;
     }
 
     public void showStatus() {
+        System.out.println("Certification: " + certificationName);
         if (completed) {
-            System.out.println("Certification Completed ");
+            System.out.println("Status: Completed");
         } else {
-            System.out.println("Certification Pending ");
+            System.out.println("Status: Pending");
         }
     }
 }
