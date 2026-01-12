@@ -12,12 +12,13 @@ public class Training {
     private String trainingName;
     private String trainerName;
     private Employee employee;
-    private Status status = Status.NOT_STARTED;
+    private Status status;
 
     public Training(int trainingId, String trainingName, String trainerName) {
         this.trainingId = trainingId;
         this.trainingName = trainingName;
         this.trainerName = trainerName;
+        this.status = Status.NOT_STARTED;
     }
 
     public void enrollEmployee(Employee employee) {
@@ -25,12 +26,6 @@ public class Training {
         this.status = Status.IN_PROGRESS;
         System.out.println("Employee " + employee.getEmpName() +
                 " enrolled in " + trainingName);
-    }
-
-    // ✅ BASE METHOD FOR POLYMORPHISM
-    public void evaluate() {
-        System.out.println("General training evaluation");
-        completeTraining();
     }
 
     public void completeTraining() {
@@ -49,7 +44,7 @@ public class Training {
         return trainerName;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public void evaluate() {
+        System.out.println("General training evaluation");
     }
 }

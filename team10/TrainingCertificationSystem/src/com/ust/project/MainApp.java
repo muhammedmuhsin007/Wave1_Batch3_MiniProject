@@ -23,7 +23,7 @@ public class MainApp {
             System.out.print("Enter your choice: ");
 
             int choice = sc.nextInt();
-            sc.nextLine();
+            sc.nextLine(); // clear buffer
 
             switch (choice) {
 
@@ -31,21 +31,31 @@ public class MainApp {
                     System.out.print("Enter Employee ID: ");
                     int id = sc.nextInt();
                     sc.nextLine();
+
                     System.out.print("Enter Employee Name: ");
                     String name = sc.nextLine();
+
                     employee = new Employee(id, name);
                     System.out.println("Employee created successfully.");
                     break;
 
                 case 2:
+                    if (employee == null) {
+                        System.out.println("Create employee first.");
+                        break;
+                    }
                     technicalTraining =
-                            new Training(201, "Java Full Stack", "Trainer A");
+                            new TechnicalTraining(1, "Java Full Stack", "Mr. Kumar");
                     technicalTraining.enrollEmployee(employee);
                     break;
 
                 case 3:
+                    if (employee == null) {
+                        System.out.println("Create employee first.");
+                        break;
+                    }
                     softSkillTraining =
-                            new Training(301, "Communication Skills", "Trainer B");
+                            new SoftSkillTraining(2, "Communication Skills", "Ms. Anitha");
                     softSkillTraining.enrollEmployee(employee);
                     break;
 
@@ -53,13 +63,19 @@ public class MainApp {
                     System.out.println("\nEvaluating Trainings:");
 
                     if (technicalTraining != null) {
-                        technicalTraining.completeTraining();
+                        technicalTraining.evaluate();
+                        technicalTraining.completeTraining();   // ⭐ THIS WAS MISSING
                         CertificateGenerator.generateCertificate(employee, technicalTraining);
+                    } else {
+                        System.out.println("No Technical Training enrolled.");
                     }
 
                     if (softSkillTraining != null) {
-                        softSkillTraining.completeTraining();
+                        softSkillTraining.evaluate();
+                        softSkillTraining.completeTraining();   // ⭐ THIS WAS MISSING
                         CertificateGenerator.generateCertificate(employee, softSkillTraining);
+                    } else {
+                        System.out.println("No Soft Skill Training enrolled.");
                     }
                     break;
 
@@ -73,12 +89,12 @@ public class MainApp {
                     break;
 
                 case 6:
-                    System.out.println("Exiting...");
+                    System.out.println("Exiting application...");
                     sc.close();
                     System.exit(0);
 
                 default:
-                    System.out.println("Invalid option");
+                    System.out.println("Invalid choice.");
             }
         }
     }
